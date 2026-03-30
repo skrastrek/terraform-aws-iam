@@ -18,8 +18,8 @@ variable "policy_attachments" {
 }
 
 variable "policy_jsons" {
-  type    = list(string)
-  default = []
+  type    = map(string)
+  default = {}
 }
 
 variable "github_actions_iam_oidc_provider_arn" {
