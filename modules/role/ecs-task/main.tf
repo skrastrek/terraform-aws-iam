@@ -1,10 +1,10 @@
-resource "aws_iam_role" "ecs_task" {
+resource "aws_iam_role" "this" {
   name               = var.name
-  assume_role_policy = data.aws_iam_policy_document.ecs_task_assume_role.json
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
   tags               = var.tags
 }
 
-data "aws_iam_policy_document" "ecs_task_assume_role" {
+data "aws_iam_policy_document" "assume_role" {
   statement {
     effect = "Allow"
     actions = [
