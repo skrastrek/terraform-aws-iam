@@ -16,6 +16,10 @@ variable "policy_attachments" {
   type = list(string)
 }
 
+variable "policy_jsons" {
+  type = list(string)
+}
+
 variable "github_actions_iam_oidc_provider_arn" {
   type = string
 }

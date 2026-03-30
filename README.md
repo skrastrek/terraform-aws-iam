@@ -71,11 +71,53 @@ modules/
 
 ### role
 
-| Module | Description |
+#### `ecs-task`
+
+IAM role for ECS tasks.
+
+| Input | Type | Required | Description |
+|-------|------|----------|-------------|
+| `name` | `string` | yes | Role name |
+| `tags` | `map(string)` | yes | Tags to apply to the role |
+
+| Output | Description |
 |--------|-------------|
-| `ecs-task` | IAM role for ECS tasks |
-| `ecs-task-execution` | IAM role for ECS task execution |
-| `github-actions-oidc` | IAM role assumable by GitHub Actions via OIDC |
+| `id` | Role name |
+| `arn` | Role ARN |
+
+#### `ecs-task-execution`
+
+IAM role for ECS task execution.
+
+| Input | Type | Required | Description |
+|-------|------|----------|-------------|
+| `name` | `string` | yes | Role name |
+| `tags` | `map(string)` | yes | Tags to apply to the role |
+
+| Output | Description |
+|--------|-------------|
+| `id` | Role name |
+| `arn` | Role ARN |
+
+#### `github-actions-oidc`
+
+IAM role assumable by GitHub Actions via OIDC.
+
+| Input | Type | Required | Description |
+|-------|------|----------|-------------|
+| `name` | `string` | yes | Role name |
+| `description` | `string` | no | Role description |
+| `permission_boundary` | `string` | no | ARN of the permissions boundary policy |
+| `policy_attachments` | `list(string)` | yes | List of managed policy ARNs to attach |
+| `policy_jsons` | `list(string)` | yes | List of inline policy JSON documents |
+| `github_actions_iam_oidc_provider_arn` | `string` | yes | ARN of the GitHub Actions IAM OIDC provider |
+| `github_repositories` | `list(string)` | yes | GitHub repositories allowed to assume the role (e.g. `["org/repo"]`) |
+| `tags` | `map(string)` | yes | Tags to apply to the role |
+
+| Output | Description |
+|--------|-------------|
+| `id` | Role name |
+| `arn` | Role ARN |
 
 ### oidc-provider
 
