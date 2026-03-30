@@ -13,11 +13,13 @@ variable "permission_boundary" {
 }
 
 variable "policy_attachments" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
 
 variable "policy_jsons" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
 
 variable "github_actions_iam_oidc_provider_arn" {
