@@ -15,10 +15,11 @@ module "assume_role_policy_document" {
 }
 
 resource "aws_iam_role_policy" "this" {
-  count = length(var.policy_jsons)
+  for_each = var.policy_jsons
 
   role   = aws_iam_role.this.id
-  policy = var.policy_jsons[count.index]
+  name   = each.key
+  policy = each.value
 }
 
 resource "aws_iam_role_policy_attachment" "this" {
