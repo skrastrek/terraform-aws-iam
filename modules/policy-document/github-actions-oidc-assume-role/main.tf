@@ -18,7 +18,12 @@ data "aws_iam_policy_document" "this" {
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = [for repository in var.github_repositories : "repo:${repository}:*"]
+      values = flatten([for repository in var.github_repositories : [
+        # Classic token format: repo:<org>/<repo>:...
+        "repo:${repository}:*",
+        # Immutable ID token format: repo:<org>@<org-id>/<repo>@<repo-id>:...
+        "repo:${split("/", repository)[0]}@*/${split("/", repository)[1]}@*:*"
+      ]])
     }
   }
 }
